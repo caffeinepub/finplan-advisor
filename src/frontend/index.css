@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Deep navy finance palette */
+    --background: 0.13 0.02 255;
+    --foreground: 0.93 0.01 245;
+    --card: 0.16 0.025 255;
+    --card-foreground: 0.93 0.01 245;
+    --popover: 0.18 0.025 255;
+    --popover-foreground: 0.93 0.01 245;
+
+    /* Primary: gold/amber accent */
+    --primary: 0.82 0.18 75;
+    --primary-foreground: 0.12 0.02 255;
+
+    /* Secondary: muted navy */
+    --secondary: 0.2 0.03 255;
+    --secondary-foreground: 0.93 0.01 245;
+
+    /* Muted: subtle navy */
+    --muted: 0.19 0.025 255;
+    --muted-foreground: 0.6 0.02 245;
+
+    /* Accent: bright gold */
+    --accent: 0.22 0.03 255;
+    --accent-foreground: 0.82 0.18 75;
+
+    /* Destructive */
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.97 0 0;
+
+    /* Borders and inputs */
+    --border: 0.26 0.035 255;
+    --input: 0.22 0.03 255;
+    --ring: 0.82 0.18 75;
+
+    /* Chart colors: gold, teal, slate, rose, green */
+    --chart-1: 0.82 0.18 75;
+    --chart-2: 0.68 0.15 185;
+    --chart-3: 0.55 0.12 245;
+    --chart-4: 0.70 0.20 25;
+    --chart-5: 0.70 0.15 145;
+
+    /* Sidebar */
+    --sidebar: 0.11 0.02 255;
+    --sidebar-foreground: 0.93 0.01 245;
+    --sidebar-primary: 0.82 0.18 75;
+    --sidebar-primary-foreground: 0.12 0.02 255;
+    --sidebar-accent: 0.18 0.03 255;
+    --sidebar-accent-foreground: 0.93 0.01 245;
+    --sidebar-border: 0.22 0.03 255;
+    --sidebar-ring: 0.82 0.18 75;
+
+    /* Custom finance tokens */
+    --gold: 0.82 0.18 75;
+    --gold-muted: 0.75 0.14 75;
+    --success: 0.68 0.16 145;
+    --warning: 0.78 0.18 65;
+    --navy-deep: 0.09 0.02 255;
+    --navy-surface: 0.16 0.025 255;
+    --navy-elevated: 0.2 0.03 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar for dark finance theme */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+  .text-success {
+    color: oklch(var(--success));
+  }
+  .bg-success\/10 {
+    background-color: oklch(var(--success) / 0.1);
+  }
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+  .gradient-gold {
+    background: linear-gradient(135deg, oklch(var(--gold) / 0.15), oklch(var(--gold) / 0.05));
+  }
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+  }
+}
